@@ -1,0 +1,17 @@
+.Travel {
+    width: 250px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    margin: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .Travel:hover,
+  .Travel:active {
+    background-color: #c0ddf5;
+  }
+  
+  
