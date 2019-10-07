@@ -1,7 +1,6 @@
 import React from 'react';
 import './Travel.css';
-
-const BACKEND_URL = 'http://liferay-gs-ci:8091'
+import 'dotenv/config';
 
 const travel = (props) => {
     console.log(props.details);
@@ -15,7 +14,7 @@ const travel = (props) => {
     return (
         <div className="Travel">
             <h3>{props.title}</h3>
-            <img style={{width: '200px'}} src={BACKEND_URL+backgroundImage}></img>
+            <img style={{width: '200px'}} src={process.env.REACT_APP_BACKEND_URL+backgroundImage}></img>
         </div>
     );
 }
