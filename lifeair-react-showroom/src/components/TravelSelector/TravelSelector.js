@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 
 const getDestinationsQuery = gql`
 query {
-  destinations: contentSetContentSetElements(contentSetId: 35128) {
+  destinations: contentSetContentSetElements(contentSetId: 34816) {
     items {
         id
         title
