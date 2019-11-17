@@ -75,6 +75,12 @@
                                     <ul v-bind:key="related.id"
                                         v-for="related in car.content.relatedContents">
                                         <li v-bind:key="detail.name" v-for="detail in related.graphQLNode.details">
+                                            <span :style="'color:' + getColor(detail)"
+                                                  @click="changeToImage(getColor(detail))"
+                                                  style="width: 4px; cursor: pointer"
+                                                  v-if="detail.name === 'Name' && getColor(detail)"
+                                            >■</span>
+
                                             {{detail.name}} - {{detail.value.data}}
                                         </li>
                                     </ul>
@@ -128,15 +134,28 @@
                 WEIGHTS_URL: 'http://127.0.0.1:8082',
                 TEST_AUTH: 'dGVzdEBsaWZlcmF5LmNvbTp0ZXN0',
                 YOUNG_AUTH: 'eW91bmdAeW91bmcueW91bmc6eW91bmd5b3VuZw==',
+                imageIndex: 0,
                 isMoreInfoShown: false,
             }
         },
         methods: {
+            getColor(detail) {
+                if (!detail.value || !detail.value.data || detail.value.data.indexOf('color') === -1) {
+                    return;
+                }
+
+                return detail.value.data.replace('color', '');
+            },
+            // eslint-disable-next-line no-unused-vars
+            changeToImage(color) {
+                //TODO small hack :P
+                this.imageIndex = 1;
+            },
             getContentAttr(car, key) {
                 return car.content.details.filter(detail => detail.name === key).map(detail => detail.value.data).join(',')
             },
             getImageUrl(data) {
-                return data.details.filter(detail => detail.type === 'image').map(detail => this.SERVER_URL + detail.value.image.contentUrl)[0];
+                return data.details.filter(detail => detail.type === 'image').map(detail => this.SERVER_URL + detail.value.image.contentUrl)[this.imageIndex];
             },
             showCarousel() {
                 this.isMoreInfoShown = false;
@@ -235,10 +254,6 @@
     .content-container {
         padding-top: 100px;
         height: 500px;
-    }
-
-    .content-container ul {
-        height: 100%;
     }
 
     .action-button {
