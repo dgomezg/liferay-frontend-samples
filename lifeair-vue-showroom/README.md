@@ -6,4 +6,16 @@
 
 
 * Clear logged user with localStorage.clear()
-__
+
+
+# Demo
+
+* Demo GraphQL App
+* Show code
+* Show an example of segmentation
+* Altair
+
+* Demo REST
+* Show Alexa Code
+* Show SwaggerHub
+* Show Paw
