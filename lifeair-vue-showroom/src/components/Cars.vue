@@ -78,7 +78,7 @@
                                             <span :style="'color:' + getColor(detail)"
                                                   @click="changeToImage(getColor(detail))"
                                                   style="width: 4px; cursor: pointer"
-                                                  v-if="detail.name === 'Name' && getColor(detail)"
+                                                  v-if="detail.name === 'Color' && getColor(detail)"
                                             >■</span>
 
                                             {{detail.name}} - {{detail.value.data}}
@@ -140,11 +140,11 @@
         },
         methods: {
             getColor(detail) {
-                if (!detail.value || !detail.value.data || detail.value.data.indexOf('color') === -1) {
+                if (!detail.value || !detail.value.data) {
                     return;
                 }
 
-                return detail.value.data.replace('color', '');
+                return detail.value.data;
             },
             // eslint-disable-next-line no-unused-vars
             changeToImage(color) {
@@ -155,7 +155,7 @@
                 return car.content.details.filter(detail => detail.name === key).map(detail => detail.value.data).join(',')
             },
             getImageUrl(data) {
-                return data.details.filter(detail => detail.type === 'image').map(detail => this.SERVER_URL + detail.value.image.contentUrl)[this.imageIndex];
+                return data.details.filter(detail => detail.type === 'image' && detail.value.image).map(detail => this.SERVER_URL + detail.value.image.contentUrl)[this.imageIndex];
             },
             showCarousel() {
                 this.isMoreInfoShown = false;
