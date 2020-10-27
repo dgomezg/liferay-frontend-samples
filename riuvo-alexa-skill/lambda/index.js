@@ -1,6 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
-require('dotenv/config');
+require('dotenv').config();
 
 const BASIC_AUTH = 'dGVzdEBsaWZlcmF5LmNvbTp0ZXN0';
 const headers = {'Authorization': `Basic ${BASIC_AUTH}`};
